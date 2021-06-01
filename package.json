@@ -1,0 +1,22 @@
+{
+  "name": "francoisdamien",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xItsSky/francoisdamien.git"
+  },
+  "author": "ItsSky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xItsSky/francoisdamien/issues"
+  },
+  "homepage": "https://github.com/xItsSky/francoisdamien#readme",
+  "dependencies": {
+    "env-cmd": "^10.1.0"
+  }
+}
