@@ -4,5 +4,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const HelloService = require('./service/HelloService')(client);
 const HelloAnswerService = require('./service/HelloAnswerService')(client);
 const NoService = require('./service/NoService')(client);
+const BeerService = require('./service/BeerService')(client);
 
 client.login(process.env.TOKEN);
