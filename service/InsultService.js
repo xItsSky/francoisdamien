@@ -23,7 +23,7 @@ module.exports = function(client){
                 connection.disconnect();
             });
 
-            message.reply("Un peu de respect !");
+            message.inlineReply("Un peu de respect !");
         }
     });
 
