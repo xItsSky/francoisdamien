@@ -2,13 +2,11 @@ module.exports = function(client) {
     client.on('voiceStateUpdate', async (oldMember, newMember) => {
         let role = newMember.member.roles.cache.find(role => role.name === "bot");
 
-        if(newMember.channel !== null && newMember.channel.id === process.env.AFK_ID)
-            return;
+        if(role === undefined && newMember.channel === null && (oldMember.channel !== null) ||
+            role === undefined && newMember.channel.id === process.env.AFK_ID && (oldMember.channel !== null)) {
+            const connection = await oldMember.channel.join();
 
-        if(newMember.channel !== null && (oldMember.channel !== newMember.channel) && role === undefined) {
-            const connection = await newMember.channel.join();
-
-            const dispatcher = connection.play('./mp3/bonjour.mp3');
+            const dispatcher = connection.play('./mp3/sors.mp3');
 
             dispatcher.setVolume(0.5); // half the volume
 
