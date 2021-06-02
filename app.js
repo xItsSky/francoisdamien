@@ -10,5 +10,6 @@ const BeerService = require('./service/BeerService')(client);
 const InsultService = require('./service/InsultService')(client);
 const GoOutTextService = require('./service/GoOutTextService')(client);
 const GoOutService = require('./service/GoOutService')(client);
+const CapsLockService = require('./service/CapsLockService')(client);
 
 client.login(process.env.TOKEN);
