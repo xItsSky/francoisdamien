@@ -1,3 +1,6 @@
+let IncludesList = require('../utils/IncludesList');
+let words = ["Bière", "Biere", "bière", "biere", "Binouze", "binouze"]
+
 module.exports = function(client) {
     /**
      * When see hello
@@ -7,10 +10,7 @@ module.exports = function(client) {
         if(message.author.bot)
             return;
 
-        if (message.content.includes("Bière") ||
-            message.content.includes("bière") ||
-            message.content.includes("biere") ||
-            message.content.includes("beer")) {
+        if (IncludesList(message.content, words)) {
             message.reply(`La première bière, c'est celle qui remet les idées en place !`);
         }
     });
