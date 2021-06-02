@@ -13,15 +13,18 @@ module.exports = function(client){
         insults.array.push("mere");
         if(insults.array.some(substring=>message.content.includes(substring))){
 
-            const connection = await message.member.voice.channel.join();
-            const dispatcher = connection.play('./mp3/Respect.mp3');
+            message.member.voice.channel.join().then(connection =>
+                {
+                    const dispatcher = connection.play('./mp3/Respect.mp3');
 
-            dispatcher.setVolume(0.5); // half the volume
+                    dispatcher.setVolume(0.5); // half the volume
 
-            dispatcher.on('finish', () => {
-                dispatcher.destroy();
-                connection.disconnect();
-            });
+                    dispatcher.on('finish', () => {
+                        dispatcher.destroy();
+                        connection.disconnect();
+                    });
+                }
+            )
 
             message.inlineReply("Un peu de respect !");
         }
