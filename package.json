@@ -23,6 +23,7 @@
     "discord.js": "^12.5.3",
     "env-cmd": "^10.1.0",
     "ffmpeg-static": "^4.3.0",
+    "french-badwords-list": "^1.0.5",
     "nodaemon": "^0.0.5",
     "node-opus": "^0.3.3"
   }
