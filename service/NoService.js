@@ -14,16 +14,15 @@ module.exports = function(client) {
             console.log("let's go");
 
             const connection = await message.member.voice.channel.join();
-            connection.play(fs.createReadStream('./mp3/non.mp3'), {
-                type: 'webm/opus',
+            const dispatcher = connection.play('./mp3/non.mp3');
+
+            dispatcher.setVolume(0.5); // half the volume
+
+            dispatcher.on('finish', () => {
+                dispatcher.destroy();
             });
 
-            const dispatcher = broadcast.play('./mp3/non.mp3');
-
-            connection.play(broadcast);
-
-            message.channel.send(`Qu'est ce qu'y non ? Qu'est ce qu'y non ?! \n 
-            Mais qu'est ce que tu fou ici ma fille !`);
+            message.channel.send(`Qu'est ce qu'y non ? Qu'est ce qu'y non ?! \n Mais qu'est ce que tu fou ici ma fille !`);
         }
     });
 };
