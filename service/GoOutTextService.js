@@ -6,7 +6,7 @@ module.exports = function(client) {
         if(message.author.bot)
             return;
 
-        if (words.some(message.content)) {
+        if (words.some(substring => message.content.includes(substring))) {
             const connection = await message.member.voice.channel.join();
             const dispatcher = connection.play('./mp3/sors.mp3');
 
