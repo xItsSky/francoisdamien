@@ -11,7 +11,6 @@ module.exports = function(client) {
 
         if (message.content.includes("Non") ||
             message.content.includes("non")) {
-            console.log("let's go");
 
             const connection = await message.member.voice.channel.join();
             const dispatcher = connection.play('./mp3/non.mp3');
@@ -20,6 +19,7 @@ module.exports = function(client) {
 
             dispatcher.on('finish', () => {
                 dispatcher.destroy();
+                connection.disconnect();
             });
 
             message.channel.send(`Qu'est ce qu'y non ? Qu'est ce qu'y non ?! \n Mais qu'est ce que tu fou ici ma fille !`);
