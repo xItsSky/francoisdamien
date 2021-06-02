@@ -1,4 +1,5 @@
 const fs = require('fs');
+var soundPlayerAndMessagesender= require('../utils/sendMessageAndPlayFile');
 
 module.exports = function(client) {
     /**
@@ -11,18 +12,7 @@ module.exports = function(client) {
 
         if (message.content.includes("Non") ||
             message.content.includes("non")) {
-
-            const connection = await message.member.voice.channel.join();
-            const dispatcher = connection.play('./mp3/non.mp3');
-
-            dispatcher.setVolume(0.5); // half the volume
-
-            dispatcher.on('finish', () => {
-                dispatcher.destroy();
-                connection.disconnect();
-            });
-
-            message.channel.send(`Qu'est ce qu'y non ? Qu'est ce qu'y non ?! \n Mais qu'est ce que tu fou ici ma fille !`);
+            soundPlayerAndMessagesender(message,`Qu'est ce qu'y non ? Qu'est ce qu'y non ?! \n Mais qu'est ce que tu fou ici ma fille !`,'./mp3/non.mp3')
         }
     });
 };
