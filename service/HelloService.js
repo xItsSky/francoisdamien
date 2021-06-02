@@ -10,6 +10,6 @@ module.exports = function(client) {
         if (!channel) return;
 
         // Send the message, mentioning the member
-        channel.send(`Ces m'sieur dame bonsoir`);
+        channel.send(`Ces m'sieur dame bonjour`);
     });
 };
