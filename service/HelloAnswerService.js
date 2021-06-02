@@ -11,19 +11,19 @@ module.exports = function(client) {
         if (message.content.includes("Bonjour") ||
             message.content.includes("bonjour")) {
             // Send "pong" to the same channel
-            message.reply(`M'sieur dame, bonjour`);
+            message.reply(`Ces m'sieur dame, bonjour`);
         }
         //bonsoir
         else if (message.content.includes("Bonsoir") ||
             message.content.includes("bonsoir")) {
             // Send "pong" to the same channel
-            message.reply(`M'sieur dame, bonsoir`);
+            message.reply(`Ces m'sieur dame, bonsoir`);
         }
         //hello
         else if (message.content.includes("Hello") ||
             message.content.includes("hello")) {
             // Send "pong" to the same channel
-            message.reply(`M'sieur dame, hello`);
+            message.reply(`Ces m'sieur dame, hello`);
         }
     });
 };
