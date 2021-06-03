@@ -1,3 +1,5 @@
+let onVoice = require('./GoOutTextService.js').onVoice;
+
 module.exports = function(client) {
     client.on('voiceStateUpdate', async (oldMember, newMember) => {
         let role = newMember.member.roles.cache.find(role => role.name === "bot");

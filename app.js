@@ -9,7 +9,7 @@ const NoService = require('./service/NoService')(client);
 const BeerService = require('./service/BeerService')(client);
 const InsultService = require('./service/InsultService')(client);
 const GoOutTextService = require('./service/GoOutTextService')(client);
-const GoOutService = require('./service/GoOutService')(client);
+//const GoOutService = require('./service/GoOutService')(client);
 const CapsLockService = require('./service/CapsLockService')(client);
 const MonkeyService = require('./service/MonkeyService')(client);
 
