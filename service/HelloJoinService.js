@@ -8,7 +8,7 @@ module.exports = function(client) {
         if(newMember.channel !== null && (oldMember.channel !== newMember.channel) && role === undefined) {
             const connection = await newMember.channel.join();
 
-            const dispatcher = connection.play('./mp3/bonjour.mp3');
+            const dispatcher = connection.play('./mp3/Bonjour.mp3');
 
             dispatcher.setVolume(0.5); // half the volume
 
