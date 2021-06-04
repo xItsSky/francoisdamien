@@ -13,7 +13,7 @@ module.exports = function(client) {
         if (words.some(word => command === word) && args.length === 1) {
             const member = message.guild.members.cache.find(m => m.user.username.toLowerCase() === name.toLowerCase());
 
-            if(member.voice.channel === null) return;
+            if(member === undefined || member.voice.channel === null) return;
 
             const connection = await member.voice.channel.join();
             const dispatcher = connection.play('./mp3/sors.mp3');
