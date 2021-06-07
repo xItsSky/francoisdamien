@@ -3,6 +3,8 @@
  */
 
 module.exports = function (message,textToSend,sound){
+    if(message.member.voice.channel === null) return;
+
     message.member.voice.channel.join().then(connection =>
         {
             const dispatcher = connection.play(sound);
