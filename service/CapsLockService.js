@@ -6,7 +6,7 @@ module.exports = function(client){
             if(message.author.bot){
                 return;
             }
-            if(message.content === message.content.toUpperCase()){
+            if(message.content === message.content.toUpperCase() && message.content !== ""){
                 soundPlayerAndMessagesender(message,"C'EST EXCESSIVEMENT ENERVANT !","./mp3/enervant.mp3");
             }
         }
