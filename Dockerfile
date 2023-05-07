@@ -2,6 +2,7 @@ FROM node:18.16.0
 
 RUN apt update
 RUN npm install -g npm@9.6.6
+RUN npm install -g env-cmd
 
 RUN mkdir -p /usr/src/bot
 WORKDIR /usr/src/bot
