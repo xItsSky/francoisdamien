@@ -38,7 +38,7 @@ client.on(Events.ClientReady, () => {
 
         // Register all commands
         const rest = new REST({version: '10'}).setToken(config.token);
-        rest.put(Routes.applicationGuildCommands(config.clientId, '910130772999024711'), {body: commands.map(cmd => cmd.data.toJSON())})
+        rest.put(Routes.applicationCommands(config.clientId), {body: commands.map(cmd => cmd.data.toJSON())})
           .then(data => {
             console.debug(`[Commands] Successfully registering ${data.length} commands`);
 

@@ -17,7 +17,7 @@ export const cmd = {
       import('../services/move-out-voice.service.js').then(async service => {
         service.sayMoveOut(user.voice.channel, () => user.voice.disconnect());
       }).then(
-        interaction.reply(`I take care of the moving out of ${user.displayName}`)
+        interaction.reply(`I take care of moving out ${user.displayName}`)
       )
     } else {
       interaction.reply(`Cannot move out ${user.displayName} because he/she isn't connected on a vocal channel.`);
