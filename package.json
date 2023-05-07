@@ -4,7 +4,7 @@
   "description": "This is a basic bot which reuse the emblematic lines of Francois Damiens",
   "main": "bot.js",
   "scripts": {
-    "run": "env-cmd node bot.js",
+    "start": "env-cmd node bot.js",
     "dev": "env-cmd nodemon bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
