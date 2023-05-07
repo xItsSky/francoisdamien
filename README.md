@@ -1,8 +1,8 @@
 # Francois Damiens Discord bot
 
-<img src="https://badgen.net/badge/license/MIT/green"  alt="license badge"/>
-<img src="https://badgen.net/badge/discordjs/14.11.0/purple"  alt="license badge"/>
-<img src="https://badgen.net/badge/version/2.0.0/cyan"  alt="license badge"/>
+<img src="https://badgen.net/badge/license/MIT/green"  alt="license badge" style="display: inline-block; margin: 0;"/>
+<img src="https://badgen.net/badge/discordjs/14.11.0/purple"  alt="license badge" style="display: inline-block; margin: 0;"/>
+<img src="https://badgen.net/badge/version/2.0.0/cyan"  alt="license badge" style="display: inline-block; margin: 0;"/>
 
 ## Description
 
