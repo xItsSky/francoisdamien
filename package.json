@@ -1,31 +1,29 @@
 {
-  "name": "francoisdamien",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "francoisdamiens",
+  "version": "2.0.0",
+  "description": "This is a basic bot which reuse the emblematic lines of Francois Damiens",
+  "main": "bot.js",
   "scripts": {
-    "start": "env-cmd node app.js",
-    "dev": "env-cmd nodemon app.js",
+    "run": "env-cmd node bot.js",
+    "dev": "env-cmd nodemon bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xItsSky/francoisdamien.git"
   },
-  "author": "ItsSky",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/xItsSky/francoisdamien/issues"
   },
-  "homepage": "https://github.com/xItsSky/francoisdamien#readme",
+  "keywords": ["discord", "bot", "francoisdamiens"],
+  "author": "ItsSky and F3Y0D",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
-    "discord.js": "^12.5.3",
-    "env-cmd": "^10.1.0",
-    "ffmpeg-static": "^4.3.0",
-    "french-badwords-list": "^1.0.5",
-    "gif-search": "^2.1.0",
-    "nodaemon": "^0.0.5",
-    "node-opus": "^0.3.3"
+    "sodium": "^3.0.2",
+    "opusscript": "^0.0.7",
+    "ffmpeg": "^0.0.4",
+    "@discordjs/voice": "^0.16.0",
+    "discord.js": "^14.11.0"
   }
 }
