@@ -11,6 +11,8 @@
 This is a small discord bot which reuse the emblematic lines of Francois Damiens.
 It reacts to messages and voice state changes.
 
+In order to invite the Francois Damiens bot on your own discord server, <a href="https://discord.com/api/oauth2/authorize?client_id=849312964472209438&permissions=384453060866&scope=bot%20applications.commands">click here</a>
+
 ## How to use it locally
 
 - Copy the `.env.sample` file into a `.env` file and feed the `TOKEN` and `CLIENT_ID` variables by using your own bot information from the Discord development portal.
