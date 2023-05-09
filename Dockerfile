@@ -1,7 +1,7 @@
 FROM node:18.16.0
 
 RUN apt update
-RUN apt install ffmpeg
+RUN apt install -y ffmpeg
 RUN npm install -g npm@9.6.6
 RUN npm install -g env-cmd
 
