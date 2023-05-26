@@ -30,6 +30,7 @@ client.login(config.token);
  */
 async function registerCommands() {
   await import('./commands/moveout.command.js').then(commandFile => commands.push(commandFile.cmd));
+  await import('./commands/stop-eat.command.js').then(commandFile => commands.push(commandFile.cmd));
   await import('./commands/tense.command.js').then(commandFile => commands.push(commandFile.cmd));
 
   // Register all commands
