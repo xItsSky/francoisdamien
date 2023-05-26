@@ -13,11 +13,10 @@ export const cmd = {
     const user = interaction.member;
 
     if (user.voice !== null && user.voice.channel != null) {
+      interaction.reply(`I will move out ${user.displayName}`)
       import('../services/move-out-voice.service.js').then(async service => {
         service.sayMoveOut(user.voice.channel, () => user.voice.disconnect());
-      }).then(
-        interaction.reply(`I take care of moving out ${user.displayName}`)
-      )
+      })
     } else {
       interaction.reply(`Cannot move out ${user.displayName} because he/she isn't connected on a vocal channel.`);
     }
