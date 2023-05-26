@@ -25,34 +25,34 @@ client.on(Events.ClientReady, () => {
   const commandsFolder = fs.readdirSync(commandsFolderPath);
 
   // Generating command list
-  commandsFolder.forEach(commandFileName => {
-    import(path.join(commandsFolderPath, commandFileName)).then(commandFile => {
+  commandsFolder.forEach(async commandFileName => {
+    await import(path.join(commandsFolderPath, commandFileName)).then(commandFile => {
       const command = commandFile.cmd;
       if ('data' in command && 'run' in command) {
         console.debug(`[Commands] Adding '${command.data.name}' command to registering process.`)
         commands.push(command);
       }
-
-      try {
-        console.debug(`[Commands] Starting registering ${commands.length} commands ...`);
-
-        // Register all commands
-        const rest = new REST({version: '10'}).setToken(config.token);
-        rest.put(Routes.applicationCommands(config.clientId), {body: commands.map(cmd => cmd.data.toJSON())})
-          .then(data => {
-            console.debug(`[Commands] Successfully registering ${data.length} commands`);
-
-            // Register all listeners
-            console.debug('[LISTENERS] Starting registering listeners ...');
-            import('./listeners/messages.listener.js').then(listener => listener.listenMessages(client));
-            import('./listeners/voice-state.listener.js').then(listener => listener.listenVoiceState(client));
-            import('./listeners/interactions.listener.js').then(listener => listener.listenInteractions(client, commands));
-            console.debug('[LISTENERS] Successfully registering listeners ...');
-          })
-      } catch (error) {
-        console.error(error);
-      }
     });
+
+    try {
+      console.debug(`[Commands] Starting registering ${commands.length} commands ...`);
+
+      // Register all commands
+      const rest = new REST({version: '10'}).setToken(config.token);
+      rest.put(Routes.applicationCommands(config.clientId), {body: commands.map(cmd => cmd.data.toJSON())})
+        .then(data => {
+          console.debug(`[Commands] Successfully registering ${data.length} commands`);
+
+          // Register all listeners
+          console.debug('[LISTENERS] Starting registering listeners ...');
+          import('./listeners/messages.listener.js').then(listener => listener.listenMessages(client));
+          import('./listeners/voice-state.listener.js').then(listener => listener.listenVoiceState(client));
+          import('./listeners/interactions.listener.js').then(listener => listener.listenInteractions(client, commands));
+          console.debug('[LISTENERS] Successfully registering listeners ...');
+        })
+    } catch (error) {
+      console.error(error);
+    }
   });
 });
 
