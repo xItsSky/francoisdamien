@@ -2,7 +2,7 @@ import {PermissionsBitField, SlashCommandBuilder} from "discord.js";
 
 export const cmd = {
   data: new SlashCommandBuilder()
-    .setName('tenseuser')
+    .setName('saytense')
     .setDescription('Say to a user that he is tense')
     .addUserOption(option => option
       .setName('username')
@@ -13,10 +13,8 @@ export const cmd = {
 
     if (user.voice !== null && user.voice.channel != null) {
       import('../services/tense-voice.service.js').then(async service => {
-        service.sayTense(user.voice.channel, () => user.voice.disconnect());
-      }).then(
-        interaction.reply(`I will say to ${user.displayName} that he is tense.`)
-      )
+        service.sayTense(user.voice.channel, () => interaction.reply(`I will say to ${user.displayName} that he is tense.`))
+      });
     } else {
       interaction.reply(`Cannot join ${user.displayName}, because he/she isn't connected on a vocal channel.`);
     }

@@ -19,41 +19,37 @@ const commands = [];
 // Bot initialization
 client.on(Events.ClientReady, () => {
   console.debug(`[Initialization] Bot is up and logged in as ${client.user.tag}`);
-
-  // Get all Commands from commands folder
-  const commandsFolderPath = path.join(__dirname, 'commands');
-  const commandsFolder = fs.readdirSync(commandsFolderPath);
-
-  // Generating command list
-  commandsFolder.forEach(async commandFileName => {
-    await import(path.join(commandsFolderPath, commandFileName)).then(commandFile => {
-      const command = commandFile.cmd;
-      if ('data' in command && 'run' in command) {
-        console.debug(`[Commands] Adding '${command.data.name}' command to registering process.`)
-        commands.push(command);
-      }
-    });
-
-    try {
-      console.debug(`[Commands] Starting registering ${commands.length} commands ...`);
-
-      // Register all commands
-      const rest = new REST({version: '10'}).setToken(config.token);
-      rest.put(Routes.applicationCommands(config.clientId), {body: commands.map(cmd => cmd.data.toJSON())})
-        .then(data => {
-          console.debug(`[Commands] Successfully registering ${data.length} commands`);
-
-          // Register all listeners
-          console.debug('[LISTENERS] Starting registering listeners ...');
-          import('./listeners/messages.listener.js').then(listener => listener.listenMessages(client));
-          import('./listeners/voice-state.listener.js').then(listener => listener.listenVoiceState(client));
-          import('./listeners/interactions.listener.js').then(listener => listener.listenInteractions(client, commands));
-          console.debug('[LISTENERS] Successfully registering listeners ...');
-        })
-    } catch (error) {
-      console.error(error);
-    }
-  });
+  registerCommands().then(() => registerListeners());
 });
 
 client.login(config.token);
+
+/**
+ * Register the commands that users can use to interact with the bot
+ * @returns {Promise<void>}
+ */
+async function registerCommands() {
+  await import('./commands/moveout.command.js').then(commandFile => commands.push(commandFile.cmd));
+  await import('./commands/tense.command.js').then(commandFile => commands.push(commandFile.cmd));
+
+  // Register all commands
+  console.debug(`[Commands] Starting registering ${commands.length} commands ...`);
+  const rest = new REST({version: '10'}).setToken(config.token);
+  await rest.put(Routes.applicationCommands(config.clientId), {body: commands.map(cmd => cmd.data.toJSON())})
+    .then(data => {
+      console.debug(`[Commands] Successfully registering ${data.length} commands`);
+    });
+}
+
+/**
+ * Register all the listener that the bot use
+ * @returns {Promise<void>}
+ */
+async function registerListeners() {
+  // Register all listeners
+  console.debug('[LISTENERS] Starting registering listeners ...');
+  await import('./listeners/messages.listener.js').then(listener => listener.listenMessages(client));
+  await import('./listeners/voice-state.listener.js').then(listener => listener.listenVoiceState(client));
+  await import('./listeners/interactions.listener.js').then(listener => listener.listenInteractions(client, commands));
+  console.debug('[LISTENERS] Successfully registering listeners ...');
+}
