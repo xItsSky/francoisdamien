@@ -9,7 +9,6 @@ export const cmd = {
       .setName('username')
       .setDescription('The user to move out')
       .setRequired(true)),
-  test: 'test',
   run: async (client, interaction) => {
     const user = interaction.member;
 
