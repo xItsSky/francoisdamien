@@ -1,4 +1,4 @@
-import type { VoiceBasedChannel, VoiceState } from 'discord.js';
+import type { VoiceState } from 'discord.js';
 import type { VoiceService } from '../services/voice.service.js';
 import type { AppLogger } from '../logger.js';
 import { AudioId } from '../types/audio.js';
@@ -12,7 +12,7 @@ export async function handleVoiceStateUpdate(
 ): Promise<void> {
   if (current.member?.id === botUserId) return;
   if (previous.channelId !== null) return;
-  const channel = current.channel as VoiceBasedChannel | null;
+  const channel = current.channel;
   if (!channel) return;
   logger.debug(
     { member: current.member?.displayName, channel: channel.name },

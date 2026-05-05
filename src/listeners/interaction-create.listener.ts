@@ -1,4 +1,4 @@
-import type { ChatInputCommandInteraction, Interaction } from 'discord.js';
+import type { Interaction } from 'discord.js';
 import type { SlashCommand } from '../types/slash-command.js';
 import type { AppContext } from '../types/app-context.js';
 
@@ -8,7 +8,7 @@ export async function handleInteractionCreate(
   ctx: AppContext,
 ): Promise<void> {
   if (!interaction.isChatInputCommand()) return;
-  const chat = interaction as ChatInputCommandInteraction;
+  const chat = interaction;
   const command = commands.get(chat.commandName);
   if (!command) {
     await chat.reply({ content: `Unknown command: ${chat.commandName}`, ephemeral: true });

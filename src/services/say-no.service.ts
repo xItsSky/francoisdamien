@@ -1,4 +1,4 @@
-import type { Message, VoiceBasedChannel } from 'discord.js';
+import type { Message } from 'discord.js';
 import { AudioId } from '../types/audio.js';
 import type { VoiceService } from './voice.service.js';
 
@@ -10,7 +10,7 @@ export function buildSayNo(noWords: string[], voice: VoiceService): SayNo {
   const lowered = noWords.map((w) => w.toLowerCase());
   return {
     async maybeReact(message) {
-      const channel = message.member?.voice.channel as VoiceBasedChannel | null | undefined;
+      const channel = message.member?.voice.channel;
       if (!channel) return;
       const words = message.content.toLowerCase().split(/\s+/);
       if (!lowered.some((word) => words.includes(word))) return;

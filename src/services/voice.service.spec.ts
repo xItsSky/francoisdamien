@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type * as DiscordVoice from '@discordjs/voice';
 import { AudioId } from '../types/audio.js';
 import { makeVoiceChannel } from '@fixtures/make-voice-channel.js';
 
@@ -8,7 +9,7 @@ const createAudioPlayer = vi.fn();
 const createAudioResource = vi.fn();
 
 vi.mock('@discordjs/voice', async () => {
-  const actual = await vi.importActual<typeof import('@discordjs/voice')>('@discordjs/voice');
+  const actual = await vi.importActual<typeof DiscordVoice>('@discordjs/voice');
   return {
     ...actual,
     joinVoiceChannel: (...args: unknown[]) => joinVoiceChannel(...args),

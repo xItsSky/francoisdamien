@@ -27,23 +27,23 @@ async function main(): Promise<void> {
   client.on('error', (err) => logger.error({ err }, 'client error'));
   client.on('shardError', (err) => logger.error({ err }, 'shard error'));
 
-  client.once(Events.ClientReady, async () => {
+  client.once(Events.ClientReady, () => {
     logger.info({ tag: client.user?.tag }, 'bot ready');
-    await publishSlashCommands(config.token, config.clientId, commands, logger);
+    publishSlashCommands(config.token, config.clientId, commands, logger).catch((err: unknown) =>
+      logger.error({ err }, 'failed to publish slash commands'),
+    );
     registerListeners(client, ctx, commands);
   });
 
-  const shutdown = async (signal: string): Promise<void> => {
+  const shutdown = (signal: string): void => {
     logger.info({ signal }, 'shutting down');
-    try {
-      client.destroy();
-    } catch (err) {
-      logger.warn({ err }, 'error during client.destroy');
-    }
+    void Promise.resolve(client.destroy()).catch((err: unknown) =>
+      logger.warn({ err }, 'error during client.destroy'),
+    );
     process.exit(0);
   };
-  process.on('SIGINT', () => void shutdown('SIGINT'));
-  process.on('SIGTERM', () => void shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
 
   await client.login(config.token);
 }
