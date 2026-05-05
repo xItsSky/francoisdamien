@@ -1,15 +1,22 @@
-FROM node:18.16.0
+# syntax=docker/dockerfile:1.7
 
-RUN apt update
-RUN apt install -y ffmpeg
-RUN npm install -g npm@9.6.6
-RUN npm install -g env-cmd
+FROM node:22-bookworm-slim AS build
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends build-essential python3 ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY tsconfig.json tsconfig.build.json ./
+COPY src ./src
+RUN npm run build
 
-RUN mkdir -p /usr/src/bot
-WORKDIR /usr/src/bot
-
-COPY package.json /usr/src/bot
-RUN npm install
-
-COPY . /usr/src/bot
-CMD ["npm", "run", "start"]
+FROM node:22-bookworm-slim
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=build /app/dist ./dist
+COPY resources ./resources
+USER node
+ENV NODE_ENV=production
+CMD ["node", "--env-file=.env", "dist/main.js"]
