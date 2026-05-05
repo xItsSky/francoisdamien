@@ -17,7 +17,10 @@
     "resolveJsonModule": true,
     "declaration": false,
     "sourceMap": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "@fixtures/*": ["./test/fixtures/*"]
+    }
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
   "exclude": ["node_modules", "dist"]
