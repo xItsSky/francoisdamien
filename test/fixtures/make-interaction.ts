@@ -1,10 +1,15 @@
-import type { ChatInputCommandInteraction, GuildMember, User } from 'discord.js';
+import type { ChatInputCommandInteraction, User } from 'discord.js';
 import { vi } from 'vitest';
+
+export interface FakeTargetMember {
+  displayName?: string;
+  voice?: { channel: unknown; disconnect: () => Promise<unknown> };
+}
 
 export interface FakeInteractionOptions {
   commandName?: string;
   targetUser?: Pick<User, 'id' | 'username'>;
-  targetMember?: Partial<GuildMember> & { voice?: { channel: unknown; disconnect: () => Promise<unknown> } };
+  targetMember?: FakeTargetMember;
   guildId?: string | null;
 }
 
