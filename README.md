@@ -56,6 +56,7 @@ user, and bundles `ffmpeg-static` so no system FFmpeg install is required.
 
 - xItsSky
 - F0Y3D
+- paq1
 
 ## License
 
